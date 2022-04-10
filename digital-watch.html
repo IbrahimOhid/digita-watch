@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Digital watch</title>
+  </head>
+  <body>
+    <div style="margin-top: 100px" class="container">
+        <div class="d-flex  justify-content-evenly">
+          <div class="card" style="height: 10rem; width: 10rem; justify-content: center; color:white; background-color:rgba(249, 0, 0, 0.889); font-size: 25px;">
+            <Span style="text-align: center" class="Hour"></Span>
+            <p style="text-align:center">HOUR</p>
+          </div>
+
+          <div class="card" style="height: 10rem; width: 10rem; justify-content: center; color:white; background-color:rgba(0, 255, 89, 0.889);font-size: 25px;">
+            <Span style="text-align: center" class="Minutes"></Span>
+            <p style="text-align:center">MINUTES</p>
+          </div>
+
+          <div class="card" style="height: 10rem; width: 10rem; justify-content: center;color:white; background-color:rgba(223, 7, 184, 0.889);font-size: 25px;">
+            <Span style="text-align: center" class="Seconds"></Span>
+            <p style="text-align:center">SECONDS</p>
+          </div>
+
+          <div class="card" style="height: 10rem; width: 10rem; justify-content: center;color:white; background-color:rgb(0, 153, 255);font-size: 25px;">
+            <Span style="text-align: center" class="HourChange"></Span>
+            <p style="text-align:center">AM/PM</p>
+          </div>
+        </div>
+
+
+        <div class="row row-cols-md-3 text-center" style="margin-top: 50px;">
+          <div class="col">
+            <div class="card">
+              <div style="color:white; background-color:rgb(0, 42, 252)" class="card-body">
+                <h5 class="Day"></h5>
+                <P>DAY</P>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div style="color:white; background-color:rgb(235, 89, 22)"  class="card-body">
+                <h5 class="Month"></h5>
+                <P>MONTH</P>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div style="color:white; background-color:rgb(165, 0, 247)" class="card">
+              <div class="card-body">
+                <h5 class="Date"></h5>
+                <p>DATE</p>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+
+      
+
+
+
+
+      <script>
+          function allTime(){
+          var dailyTime = new Date();
+
+          var hour = (dailyTime.getMinutes() < 10) ? "0" + dailyTime.getMinutes() : dailyTime.getMinutes();
+          var minutes = (dailyTime.getMinutes() < 10) ? "0" + dailyTime.getMinutes() : dailyTime.getMinutes();
+          var seconds = (dailyTime.getSeconds() < 10) ? "0" + dailyTime.getSeconds() : dailyTime.getSeconds();
+          var hourChange = (dailyTime.getHours() >= 12) ? "PM" : "AM";
+
+            if(dailyTime.getHours() == 0){
+                hour = 12;
+            }
+            else if(dailyTime.getHours() >= 12){
+                hour = dailyTime.getHours() - 12;
+            }
+            else{
+                hour = dailyTime.getHours();
+            }
+
+
+          document.getElementsByClassName("Hour")[0].innerHTML = hour;
+          document.getElementsByClassName("Minutes")[0].innerHTML = minutes;
+          document.getElementsByClassName("Seconds")[0].innerHTML = seconds;
+          document.getElementsByClassName("HourChange")[0].innerHTML = hourChange;
+        
+            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var myMonth = ["January", "February", "March", "April", "May", "June", "july", "August", "September", "October", "November", "December"];
+
+            var currentDay = myDay[dailyTime.getDay()];
+            var currentMonth = myMonth[dailyTime.getMonth()];
+            var date = dailyTime.getDate();
+
+            document.getElementsByClassName("Day")[0].innerHTML = currentDay;
+            document.getElementsByClassName("Month")[0].innerHTML = currentMonth;
+            document.getElementsByClassName("Date")[0].innerHTML = date;
+
+
+
+          
+      }
+      
+      allTime();
+          setInterval(function(){
+              allTime();
+          },1000);
+
+      </script>
+
+  </body>
+</html>
